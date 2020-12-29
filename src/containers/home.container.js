@@ -37,17 +37,33 @@ const Home = (props) => {
 
         <div className={classes.root}>
       <Grid container spacing={0}>
-        <Grid item xs={6} style={{width: '80%'}}>
+        <Grid item xs={6} >
             <Charts countries={props.countries}></Charts>
         </Grid>
-        <Grid item xs={6} style={{width: '80%'}}>
+        <Grid item xs={4} style={{width: '80%'}}>
         <MapWrapper 
                  countries={props.countries}
-                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpJFnOEgJOdSsSSd3jzGdVqzz4EGqb5s0&v=3.exp&libraries=geometry,drawing,places"
-                 loadingElement={<div style={{ height: `100%` }} />}
+                 googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+                 loadingElement={<div style={{ height: `50%` }} />}
                  containerElement={<div style={{ height: `100vh` }} />}
-                 mapElement={<div style={{ height: `100%` }} />}
+                 mapElement={<div style={{ height: `50%` }} />}
              />
+        </Grid>
+        <Grid item xs={2}>
+            <List>
+                <ListItem>
+                    HEH
+                </ListItem>
+                <ListItem>
+                    HEH
+                </ListItem>
+                <ListItem>
+                    HEH
+                </ListItem>
+                <ListItem>
+                    HEH
+                </ListItem>
+            </List>
         </Grid>
       </Grid>
     </div>

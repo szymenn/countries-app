@@ -23,6 +23,8 @@ chrome-user-data
 *.swp
 *.swo
 *.eslintcache
+*.env
+
 
 # Common IntelliJ Platform excludes
 
@@ -39,7 +41,6 @@ chrome-user-data
 .BuildReports
 **/.BuildReports/**
 .BuildReports/
-
 
 
 # Sensitive or high-churn files

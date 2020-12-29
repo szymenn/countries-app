@@ -1,7 +1,7 @@
 import { UPDATE_COUNTRIES } from '../../helpers/constants/actionTypes';
 import { axiosInstance } from '../../axios/config';
 
-const apiUrl = 'https://restcountries.eu/rest/v2';
+const apiUrl = process.env.REACT_APP_SERVER_URL;
 
 export const UpdateCountries = (countries) => {
     return {
