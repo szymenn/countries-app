@@ -12,9 +12,21 @@ export const UpdateCountries = (countries) => {
     }
 }
 
-export const SearchCountriesRequest = (name) => {
+export const SearchCountriesByNameRequest = (name) => {
     return (dispatch) => {
         return axiosInstance.get(`${apiUrl}/name/${name}`)
+            .then(result => {
+                dispatch(UpdateCountries(result.data))
+            })
+            .catch(error => {
+                throw error;
+            })
+    }
+}
+
+export const SearchCountriesByRegionRequest = (name) => {
+    return (dispatch) => {
+        return axiosInstance.get(`${apiUrl}/region/${name}`)
             .then(result => {
                 dispatch(UpdateCountries(result.data))
             })
