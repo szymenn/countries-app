@@ -25,14 +25,12 @@ const MapWrapper = withScriptjs(withGoogleMap((props) => {
     });
 
     return (
-        <Grid>
             <GoogleMap
-                defaultZoom={1}
+                defaultZoom={2}
                 defaultCenter={{ lat: -34.397, lng: 150.644 }}
             >
                 {markers}
             </GoogleMap>
-        </Grid>
     )
 }))
 

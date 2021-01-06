@@ -6,12 +6,16 @@ import { Bar } from "react-chartjs-2";
 import { connect } from 'react-redux';
 import Charts from '../components/charts.component';
 import { SearchCountriesByRegionRequest } from '../redux/actions/countries';
+import clsx from 'clsx';
+
 
 
 const mapStateToProps = (state) => ({
-    countries: state.countries.countries
+    countries: state.countries.countries,
+    drawer: state.drawer.drawer
 })
 
+const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,16 +28,45 @@ const useStyles = makeStyles((theme) => ({
     },
     charts: {
         padding: theme.spacing(2),
-        textAlign: 'center'
+        textAlign: 'center',
+        marginLeft: -drawerWidth
     },
     card: {
         minWidth: 275,
-    }
+    },
+    content: {
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+        marginLeft: -drawerWidth,
+    },
+    contentShift: {
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+        marginLeft: 0,
+    },
 }));
 
 const Home = (props) => {
 
     const classes = useStyles();
+
+    const getComponent = () => {
+        if (props.drawer.component === 'Map') {
+            return <MapWrapper
+                countries={props.countries}
+                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpJFnOEgJOdSsSSd3jzGdVqzz4EGqb5s0&v=3.exp&libraries=geometry,drawing,places"
+                loadingElement={<div style={{ height: `100%` }} />}
+                containerElement={<div style={{ height: `100vh` }} />}
+                mapElement={<div style={{ height: `100%` }} />}
+            />
+        };
+
+        return <Charts countries={props.countries} ></Charts>
+    }
 
 
 
@@ -43,35 +76,21 @@ const Home = (props) => {
 
 
     return (
-        <div style={{ width: '100%' }}>
-         <NavMenu />
-
-            <Box display="flex" flexDirection="row">
-                <Box>
-                <List>
-                            <ListItem button onClick={() => handleClick('Africa')}>Africa</ListItem>
-                            <ListItem button onClick={() => handleClick('Americas')}>Americas</ListItem>
-                            <ListItem button onClick={() => handleClick('Asia')}>Asia</ListItem>
-                            <ListItem button onClick={() => handleClick('Europe')}>Europe</ListItem>
-                            <ListItem button onClick={() => handleClick('Oceania')}>Oceania</ListItem>
-                        </List> 
+        <div >
+            <NavMenu />
+            <div className={clsx(classes.content, {
+                    [classes.contentShift]: props.drawer.open,
+                })}>
+                <Box display="flex" flexDirection="row" >
+                    <Box alignSelf="center" style={{ width: '100%' }} >
+                        {getComponent()}
                     </Box>
-                    <Box alignSelf="center" style={{ width: '100%' }}>
-                        <MapWrapper
-                            countries={props.countries}
-                            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpJFnOEgJOdSsSSd3jzGdVqzz4EGqb5s0&v=3.exp&libraries=geometry,drawing,places"
-                            loadingElement={<div style={{ height: `100%` }} />}
-                            containerElement={<div style={{ height: `50vh` }} />}
-                            mapElement={<div style={{ height: `100%` }} />}
-                        />
-                    </Box>
-            </Box>
-        <Box flexDirection="column">
-                    <Box alignSelf="center" style={{ width: '100%' }}>
-                        <Charts countries={props.countries}></Charts>
-                    </Box>
-        </Box>
-
+                </Box>
+                {/* <Box flexDirection="column">
+                <Box alignSelf="center" style={{ width: '100%' }}>
+                </Box>
+            </Box> */}
+            </div>
         </div>
     )
 
@@ -81,8 +100,13 @@ export default connect(mapStateToProps)(Home);
 
 
 
-
-
+//  <List>
+//                             <ListItem button onClick={() => handleClick('Africa')}>Africa</ListItem>
+//                             <ListItem button onClick={() => handleClick('Americas')}>Americas</ListItem>
+//                             <ListItem button onClick={() => handleClick('Asia')}>Asia</ListItem>
+//                             <ListItem button onClick={() => handleClick('Europe')}>Europe</ListItem>
+//                             <ListItem button onClick={() => handleClick('Oceania')}>Oceania</ListItem>
+//                         </List> 
 
 
 
