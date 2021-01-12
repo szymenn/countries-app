@@ -114,7 +114,11 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2),
     },
     select: {
-        borderColor: 'white'
+        borderColor: 'white',
+        color: 'white'
+    },
+    inputLabel: {
+        color: 'white'
     }
 }));
 
@@ -172,7 +176,7 @@ const NavMenu = (props) => {
           </Typography>
 
                     <FormControl className={classes.formControl}>
-                        <InputLabel id="demo-simple-select-helper-label">Region</InputLabel>
+                        <InputLabel id="demo-simple-select-helper-label" className={classes.inputLabel}>Region</InputLabel>
                         <Select
                             labelId="demo-simple-select-helper-label"
                             id="demo-simple-select-helper"
