@@ -14,7 +14,6 @@ export const UpdateCountries = (countries) => {
 
 export const SearchCountriesByNameRequest = (name) => {
     return (dispatch) => {
-        console.log("API_URL: ",  apiUrl);
         return axiosInstance.get(`${apiUrl}/name/${name}`)
             .then(result => {
                 dispatch(UpdateCountries(result.data))
