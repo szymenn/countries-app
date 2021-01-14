@@ -45,7 +45,7 @@ const Charts = (props) => {
                 <BarChart
                     data={data}
                     margin={{
-                        top: 5, right: 30, left: 200, bottom: 5,
+                        top: 100, right: 30, left: 200, bottom: 5,
                     }}
                 > <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
