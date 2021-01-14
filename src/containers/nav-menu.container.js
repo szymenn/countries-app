@@ -29,6 +29,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+
 
 
 const mapStateToProps = (state) => ({
@@ -202,11 +204,12 @@ const NavMenu = (props) => {
 
                 </Toolbar>
             </AppBar>
-            <Drawer
+            <SwipeableDrawer
                 className={classes.drawer}
-                variant="persistent"
                 anchor="left"
                 open={props.drawer.open}
+                onOpen={handleOpenCloseDrawer}
+                onClose={handleOpenCloseDrawer}
                 classes={{
                     paper: classes.drawerPaper,
                 }}
@@ -225,7 +228,7 @@ const NavMenu = (props) => {
                         </ListItem>
                     ))}
                 </List>
-            </Drawer>
+            </SwipeableDrawer>
             <main
                 className={clsx(classes.content, {
                     [classes.contentShift]: props.drawer.open,
