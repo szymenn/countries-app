@@ -171,10 +171,6 @@ const NavMenu = (props) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap className={classes.title}>
-                        Persistent drawer
-          </Typography>
-
                     <FormControl className={classes.formControl}>
                         <InputLabel id="demo-simple-select-helper-label" className={classes.inputLabel}>Region</InputLabel>
                         <Select
