@@ -31,8 +31,8 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         marginLeft: -drawerWidth
     },
-    card: {
-        minWidth: 275,
+    chartsContainer: {
+        width: 100
     },
     content: {
         transition: theme.transitions.create('margin', {
@@ -65,7 +65,9 @@ const Home = (props) => {
             />
         };
 
-        return <Charts countries={props.countries} ></Charts>
+        return (<Container >
+            <Charts countries={props.countries} ></Charts>
+        </Container>)
     }
 
 
@@ -77,12 +79,14 @@ const Home = (props) => {
 
     return (
         <div >
-            <NavMenu />
+
             <div className={clsx(classes.content, {
                     [classes.contentShift]: props.drawer.open,
                 })}>
-                <Box display="flex" flexDirection="row" >
-                    <Box alignSelf="center" style={{ width: '100%' }} >
+        <NavMenu />
+                
+                <Box flexDirection="column" >
+                    <Box style={{ width: '100%' }} >
                         {getComponent()}
                     </Box>
                 </Box>
