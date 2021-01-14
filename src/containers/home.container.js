@@ -85,7 +85,7 @@ const Home = (props) => {
                 })}>
         <NavMenu />
                 
-                <Box flexDirection="column" >
+                <Box flexDirection="row" >
                     <Box style={{ width: '100%' }} >
                         {getComponent()}
                     </Box>
